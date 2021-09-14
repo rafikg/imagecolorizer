@@ -50,11 +50,15 @@ def make_predictions(*, input_data: Dict, config_file: Optional[str]) -> Dict:
 
 
 if __name__ == "__main__":
+    import numpy as np
+
     config = combine_cfgs()
     image = load_image_sample(config)
     input_data = {"instances": image}
     result = make_predictions(input_data=input_data,
                               config_file=None)
+
+    np.save(config.TEST.RESULT_PREDICTION, result['predictions'])
     predictions = result.get('predictions')
     expected_prediction_mean_value = np.load(config.TEST.RESULT_PREDICTION)
 

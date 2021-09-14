@@ -9,9 +9,7 @@ config = combine_cfgs()
 
 def load_image_sample(config: yacs.config.CfgNode) -> np.ndarray:
     if Path(config.TEST.IMAGE_SAMPLE_PATH).exists():
-        image = cv2.imread(config.TEST.IMAGE_SAMPLE_PATH)
-        if image.ndim == 3:
-            image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        image = cv2.imread(config.TEST.IMAGE_SAMPLE_PATH, 0)
     else:
         raise ValueError(f'{config.TEST.IMAGE_SAMPLE_PATH} does not exist!')
     return image

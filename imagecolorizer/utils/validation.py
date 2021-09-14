@@ -13,11 +13,8 @@ def valid_input_data(image: np.ndarray, config: yacs.config.CfgNode):
     :type config: yacs.config
     :return: ndarray
     """
-    if image.ndim != 1:
-        raise ValueError('input image should be grayscale')
-    if image.shape[0] != config.INPUT_SIZE[0] or image.shape[1] != \
-            config.INPUT_SIZE[1]:
-        image = cv2.resize(src=image, dsize=config.INPUT_SIZE)
-
+    if image.shape[0] != config.DATA.INPUT_SIZE[0] or image.shape[1] != \
+            config.DATA.INPUT_SIZE[1]:
+        image = cv2.resize(src=image, dsize=config.DATA.INPUT_SIZE)
     image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
     return image
