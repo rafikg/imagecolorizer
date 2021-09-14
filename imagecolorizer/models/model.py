@@ -4,9 +4,15 @@ from tensorflow.keras import Sequential
 from tensorflow.keras.layers import (Conv2D,
                                      BatchNormalization,
                                      UpSampling2D)
+from tensorflow.keras.models import Model
 
 
-def create_image_colorizer():
+def create_image_colorizer() -> Model:
+    """
+    :create_image_colorizer: create a tf.keras model for image colorizing
+    :return:
+        tensorflow.keras Model
+    """
     model = Sequential()
     vggmodel = tf.keras.applications.vgg16.VGG16(weights='imagenet')
     for i, layer in enumerate(vggmodel.layers):

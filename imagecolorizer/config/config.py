@@ -17,13 +17,14 @@ _C.DATA = CN()
 
 # Train data path
 _C.DATA.TRAIN_PATH = os.path.join(_C.ROOT_DIR,
-                                       "datasets", "train")
+                                  "datasets", "train")
 
 # Valid data path
 _C.DATA.VALID_PATH = os.path.join(_C.ROOT_DIR,
-                                       "datasets", "valid")
+                                  "datasets", "valid")
 # input image size
-_C.DATA.INPUT_SIZE = 224
+_C.DATA.INPUT_SIZE = (224, 224)
+_C.DATA.SHUFFLE = True
 
 _C.TRAIN = CN()
 
@@ -45,6 +46,13 @@ _C.TRAIN.CHECKPOINT = os.path.join(_C.TRAIN.OUTPUT_DIR, "checkpoint")
 _C.TRAIN.LOGGING = os.path.join(_C.TRAIN.OUTPUT_DIR, "logs")
 # Saved models
 _C.TRAIN.SAVED_MODELS = os.path.join(_C.TRAIN.OUTPUT_DIR, "saved_models")
+
+# Test data
+_C.TEST = CN()
+_C.TEST.IMAGE_SAMPLE_PATH = os.path.join(_C.ROOT_DIR, '../' "tests",
+                                         "sample_data", "sample000.jpg")
+_C.TEST.RESULT_PREDICTION = os.path.join(_C.ROOT_DIR, '../', "tests",
+                                         "sample_data", "test_predictions.npy")
 
 
 def get_cfg_defaults():

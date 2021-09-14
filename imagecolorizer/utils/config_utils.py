@@ -1,13 +1,15 @@
 from pathlib import Path
 from typing import Optional
 from imagecolorizer.config.config import get_cfg_defaults
-import yacs
+import yacs.config
 
 
 def combine_cfgs(cfg_path: Optional[Path] = None):
     cfg_base = get_cfg_defaults()
+    if cfg_path is None:
+        return cfg_base
 
-    if cfg_path is not None and cfg_path.exists():
+    if cfg_path.exists():
         cfg_base.merge_from_file(cfg_path)
     else:
         raise ValueError(f"{cfg_path} file does not exist!")

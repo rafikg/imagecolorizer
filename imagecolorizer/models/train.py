@@ -1,27 +1,23 @@
 from pathlib import Path
 from typing import Optional
-
-import yacs
-from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import RMSprop
-from imagecolorizer.config.config import get_cfg_defaults
-from imagecolorizer.data.data_loader import validate_and_load_data, \
-    GrayScaleData
+from imagecolorizer.data.data_loader import (validate_and_load_data,
+                                             GrayScaleData)
 from imagecolorizer.models.model import create_image_colorizer
-from imagecolorizer.utils.config_utils import create_experiments_dir, \
-    combine_cfgs
+from imagecolorizer.utils.config_utils import (create_experiments_dir,
+                                               combine_cfgs)
 from imagecolorizer.utils.logger import CustomLogger
 import tensorflow as tf
 
 logger = CustomLogger(name=__name__).get_logger()
 
 
-def training_pipeline(config_file: Optional[str]):
+def training_pipeline(config_file: Optional[str])-> None:
 
     # combine config_file with default config
     config = combine_cfgs(config_file)
 
-    logger.debug(f'Config details: \n {config}')
+    logger.debug(f'Training config: \n {config}')
     # create folder where all experiment details will be saved
     create_experiments_dir(config)
 
@@ -33,8 +29,8 @@ def training_pipeline(config_file: Optional[str]):
     valid_images = validate_and_load_data(config.DATA.VALID_PATH)
 
     # Create train and valid dataset
-    train_dataset = GrayScaleData(images_paths=train_images)
-    valid_dataset = GrayScaleData(images_paths=valid_images)
+    train_dataset = GrayScaleData(images_paths=train_images, config=config)
+    valid_dataset = GrayScaleData(images_paths=valid_images, config=config)
 
     # compile the model
     model.compile(optimizer=RMSprop(1e-3), loss='mse')
