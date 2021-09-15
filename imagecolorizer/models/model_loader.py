@@ -1,10 +1,10 @@
 import yacs.config
-
-from imagecolorizer.models.model import create_image_colorizer
 from tensorflow.keras.models import Model
 
+from imagecolorizer.models.model import create_image_colorizer
 
-def load_model(config: yacs.config.CfgNode) -> Model:
+
+def load_model(*, config: yacs.config.CfgNode) -> Model:
     """
     :load_model: Load the ImageColorizer model
     :param config:
@@ -12,6 +12,5 @@ def load_model(config: yacs.config.CfgNode) -> Model:
     """
     model = create_image_colorizer()
     # Load weights inside model
-    # model = tf.saved_model.load(config.TRAIN.SAVED_MODELS)
-    model.load_weights(config.TRAIN.CHECKPOINT).expect_partial()
+    model.load_weights(config.TEST.TRAINED_MODEL)
     return model

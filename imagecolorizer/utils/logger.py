@@ -1,14 +1,15 @@
-from typing import Optional
 import logging
-import sys
 import os
+import sys
+from typing import Optional
+
 import termcolor
 
 
 class CustomLogger:
-    def __init__(self, name: str,
-                 output_dir: Optional[str] = None,
-                 logfile: Optional[str] = None):
+    def __init__(
+        self, name: str, output_dir: Optional[str] = None, logfile: Optional[str] = None
+    ):
         self.name = name
         self.output_dir = output_dir
         self.logfile = logfile
@@ -28,7 +29,7 @@ class CustomLogger:
         return logger
 
     @staticmethod
-    def get_colored_formatter(color: str = 'green'):
+    def get_colored_formatter(color: str = "green"):
         """
         Get colored logging formatter
         :param color: message's color
@@ -38,9 +39,12 @@ class CustomLogger:
         log_format = logging.Formatter(
             termcolor.colored(
                 "[%(asctime)s] - [%(levelname)s] -  %(name)s -"
-                " (%(filename)s).%(funcName)s(%(lineno)d)", color) +
-            "- %(message)s",
-            datefmt="%Y-%m-%d %H:%M:%S")
+                " (%(filename)s).%(funcName)s(%(lineno)d)",
+                color,
+            )
+            + "- %(message)s",
+            datefmt="%Y-%m-%d %H:%M:%S",
+        )
         return log_format
 
     def _get_handlers(self):
@@ -73,8 +77,12 @@ class CustomLogger:
         :type formatter: logging.Formatter
         :return:
         """
-        file_handler = logging.FileHandler(
-            os.path.join(self.output_dir, self.logfile))  # type: ignore
-        file_handler.setLevel(logging.DEBUG)
-        file_handler.setFormatter(formatter)
-        return file_handler
+        if self.output_dir is not None:
+            file_handler = logging.FileHandler(
+                os.path.join(self.output_dir, self.logfile)  # type: ignore
+            )
+            file_handler.setLevel(logging.DEBUG)
+            file_handler.setFormatter(formatter)
+            return file_handler
+        else:
+            raise ValueError("You should define the output dir")

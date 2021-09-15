@@ -3,3 +3,5 @@ venv/
 __pycache__/
 imagecolorizer/datasets/train
 imagecolorizer/datasets/valid
+.tox
+imagecolorizer/experiments

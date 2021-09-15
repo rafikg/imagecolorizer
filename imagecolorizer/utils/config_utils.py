@@ -1,22 +1,24 @@
 from pathlib import Path
 from typing import Optional
-from imagecolorizer.config.config import get_cfg_defaults
+
 import yacs.config
 
+from imagecolorizer.config.config import get_cfg_defaults
 
-def combine_cfgs(cfg_path: Optional[Path] = None):
+
+def combine_cfgs(*, cfg_path: Optional[str] = None) -> yacs.config.CfgNode:
     cfg_base = get_cfg_defaults()
     if cfg_path is None:
         return cfg_base
 
-    if cfg_path.exists():
+    if Path(cfg_path).exists():
         cfg_base.merge_from_file(cfg_path)
     else:
         raise ValueError(f"{cfg_path} file does not exist!")
     return cfg_base
 
 
-def create_experiments_dir(config: yacs.config.CfgNode):
+def create_experiments_dir(*, config: yacs.config.CfgNode) -> None:
     """
     :create_experiments_dir: Check and create the experiments folder.
     :param config: configuration object

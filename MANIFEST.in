@@ -1,0 +1,12 @@
+include *.txt
+include *.md
+recursive-include ./imagecolorizer/*
+include imagecolorizer/VERSION
+
+include ./requirements/requirements.txt
+
+exclude *.log
+exclude *.cfg
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
