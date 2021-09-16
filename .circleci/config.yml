@@ -49,3 +49,5 @@ workflows:
     jobs:
       - test
       - build_package
+        requires:
+          - test
