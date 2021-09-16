@@ -3,6 +3,10 @@ from tensorflow.keras import Sequential
 from tensorflow.keras.layers import BatchNormalization, Conv2D, UpSampling2D
 from tensorflow.keras.models import Model
 
+from imagecolorizer.utils.random_seed import set_random_seeds
+
+set_random_seeds()
+
 
 def create_image_colorizer() -> Model:
     """

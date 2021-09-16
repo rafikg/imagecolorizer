@@ -2,6 +2,10 @@ import cv2
 import numpy as np
 import yacs.config
 
+from imagecolorizer.utils.random_seed import set_random_seeds
+
+set_random_seeds()
+
 
 def valid_input_data(*, image: np.ndarray, config: yacs.config.CfgNode) -> np.ndarray:
     """

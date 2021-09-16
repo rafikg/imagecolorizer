@@ -7,8 +7,11 @@ from imagecolorizer.data.data_loader import GrayScaleData, validate_and_load_dat
 from imagecolorizer.models.model import create_image_colorizer
 from imagecolorizer.utils.config_utils import combine_cfgs, create_experiments_dir
 from imagecolorizer.utils.logger import CustomLogger
+from imagecolorizer.utils.random_seed import set_random_seeds
 
 logger = CustomLogger(name=__name__).get_logger()
+
+set_random_seeds()
 
 
 def training_pipeline(*, config_file: Optional[str]) -> None:

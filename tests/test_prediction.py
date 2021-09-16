@@ -2,8 +2,10 @@ import numpy as np
 
 from imagecolorizer.models.inference import make_predictions
 from imagecolorizer.utils.config_utils import combine_cfgs
+from imagecolorizer.utils.random_seed import set_random_seeds
 
 config = combine_cfgs()
+set_random_seeds()
 
 
 def test_make_prediction(sample_input_data):

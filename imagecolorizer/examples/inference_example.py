@@ -11,6 +11,7 @@ input_data = {"instances": image}
 
 result = make_predictions(input_data=input_data, config_file=None)
 predictions = result.get("predictions")
+np.save(config.TEST.RESULT_PREDICTION, predictions)
 expected_prediction_mean_value = np.load(config.TEST.RESULT_PREDICTION)
 
 assert np.isclose(
