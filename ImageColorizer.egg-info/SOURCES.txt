@@ -34,3 +34,4 @@ imagecolorizer/utils/load_data.py
 imagecolorizer/utils/logger.py
 imagecolorizer/utils/random_seed.py
 imagecolorizer/utils/validation.py
+imagecolorizer/utils/vis.py

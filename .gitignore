@@ -5,3 +5,5 @@ imagecolorizer/datasets/train
 imagecolorizer/datasets/valid
 .tox
 imagecolorizer/experiments
+dist
+ImageColorizer.egg-info/

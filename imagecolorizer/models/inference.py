@@ -48,4 +48,4 @@ def make_predictions(*, input_data: Dict, config_file: Optional[str]) -> Dict:
 
     color_img[:, :, 0] = l_channel
     color_img[:, :, 1:] = ab
-    return {"predictions": lab2rgb(color_img)}
+    return {"input_data": image, "predictions": lab2rgb(color_img)}
