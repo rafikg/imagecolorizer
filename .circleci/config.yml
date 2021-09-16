@@ -31,8 +31,21 @@ jobs:
           name: Running app tests
           command: |
             tox
+  build_package:
+    <<: *defaults
+    steps:
+      - checkout:
+          path: ~/project
+      - *prepare_venv
+      - run:
+          name: build package
+          command: |
+            python3 -m pip install --upgrade build
+            python3 -m build
+
 workflows:
   version: 2
   build_and_test:
     jobs:
       - test
+      - build_package
