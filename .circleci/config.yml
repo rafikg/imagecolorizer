@@ -30,8 +30,8 @@ jobs:
       - run:
           name: Running app tests
           command: |
-            tensorflow --version
             tox
+            tensorflow --version
 workflows:
   version: 2
   build_and_test:
