@@ -24,7 +24,7 @@ jobs:
   test:
     <<: *defaults
     steps:
-      - checkout
+      - checkout:
           path: ~/project
       - *prepare_tox
       - run:
